@@ -25,6 +25,7 @@ public class ReviewService implements IReviewService {
         this.userRepository = userRepository;
     }
 
+    @Override
     @Transactional
     public Review addReview(Review review, Long productId) {
         Product product = productRepository.findById(productId)
@@ -40,6 +41,7 @@ public class ReviewService implements IReviewService {
         return reviewRepository.save(review);
     }
 
+    @Override
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }

@@ -7,14 +7,11 @@ import com.cmarinescu.backend.product.dto.UpdateProductRequest;
 import com.cmarinescu.backend.product.model.Product;
 import com.cmarinescu.backend.product.repository.ProductRepository;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.stereotype.Service;
 
-import java.beans.PropertyDescriptor;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static com.cmarinescu.backend.helper.BeanHelper.getNullPropertyNames;
 
 @Service
 public class ProductService implements IProductService{
@@ -58,16 +55,5 @@ public class ProductService implements IProductService{
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found" ));
 
         product.setDeleted(true);
-    }
-
-    private String[] getNullPropertyNames(Object source) {
-        final BeanWrapper src = new BeanWrapperImpl(source);
-        Set<String> emptyNames = new HashSet<>();
-        for (PropertyDescriptor pd : src.getPropertyDescriptors()) {
-            Object srcValue = src.getPropertyValue(pd.getName());
-            if (srcValue == null) emptyNames.add(pd.getName());
-        }
-        String[] result = new String[emptyNames.size()];
-        return emptyNames.toArray(result);
     }
 }

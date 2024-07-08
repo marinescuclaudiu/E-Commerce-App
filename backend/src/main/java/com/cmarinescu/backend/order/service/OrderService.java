@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrderService implements IOrderService{
-
     private OrderRepository orderRepository;
     private UserRepository userRepository;
     private ProductRepository productRepository;
@@ -36,6 +35,7 @@ public class OrderService implements IOrderService{
         this.addressRepository = addressRepository;
     }
 
+    @Override
     @Transactional
     public Order createOrder(Order order, List<OrderProductRequest> productList, AddressRequest addressRequest) {
         Set<OrderProduct> orderProducts = new HashSet<>();
@@ -86,6 +86,7 @@ public class OrderService implements IOrderService{
     }
 
 
+    @Override
     public Order getOrder(Long orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(()->new EntityNotFoundException("Order with id " + orderId + " doesn't exist"));

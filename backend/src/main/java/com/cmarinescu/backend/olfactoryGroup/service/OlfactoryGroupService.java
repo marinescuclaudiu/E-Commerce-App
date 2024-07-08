@@ -15,11 +15,12 @@ public class OlfactoryGroupService implements IOlfactoryGroupService{
         this.olfactoryGroupRepository = olfactoryGroupRepository;
     }
 
+    @Override
     @Transactional
     public OlfactoryGroup addOlfactoryGroup(OlfactoryGroup olfactoryGroup) {
         return olfactoryGroupRepository.save(olfactoryGroup);
     }
-
+    @Override
     public List<OlfactoryGroup> getAllOlfactoryGroups() {
         return olfactoryGroupRepository.findAll();
     }
