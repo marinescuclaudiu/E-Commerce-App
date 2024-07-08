@@ -25,7 +25,7 @@ public class ProductService implements IProductService{
         this.productRepository = productRepository;
         this.olfactoryGroupRepository = olfactoryGroupRepository;
     }
-
+    @Override
     public Product addProduct(Product product, List<Long> olfactoryGroupIds) {
         List<OlfactoryGroup> olfactoryGroups = olfactoryGroupRepository.findAllById(olfactoryGroupIds);
 
@@ -38,10 +38,11 @@ public class ProductService implements IProductService{
         return productRepository.save(product);
     }
 
+    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
+    @Override
     public Product updateProduct(Long id, UpdateProductRequest request) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found" ));
@@ -49,6 +50,14 @@ public class ProductService implements IProductService{
         BeanUtils.copyProperties(request, product, getNullPropertyNames(request));
 
         return productRepository.save(product);
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found" ));
+
+        product.setDeleted(true);
     }
 
     private String[] getNullPropertyNames(Object source) {

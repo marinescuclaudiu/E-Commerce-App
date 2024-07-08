@@ -65,6 +65,10 @@ public class Product {
     @Column(nullable = false)
     private boolean isAvailable;
 
+    @NotNull
+    @Column(nullable = false)
+    private boolean isDeleted;
+
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
 
@@ -94,5 +98,6 @@ public class Product {
         this.quantity = quantity;
         this.price = price;
         this.isAvailable = true;
+        this.isDeleted = false;
     }
 }

@@ -9,4 +9,5 @@ public interface IProductService {
     Product addProduct(Product product, List<Long> olfactoryGroupIds);
     List<Product> getAllProducts();
     Product updateProduct(Long id, UpdateProductRequest request);
+    void deleteProduct(Long id);
 }

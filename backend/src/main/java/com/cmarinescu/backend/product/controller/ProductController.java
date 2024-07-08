@@ -41,4 +41,10 @@ public class ProductController {
         ProductResponse response = productMapper.modelToResponse(productService.updateProduct(id, request));
         return ResponseEntity.ok().body(response);
     }
+
+    @PatchMapping("admin/product/delete/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
 }
