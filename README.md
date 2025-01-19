@@ -28,5 +28,5 @@ To get started with this project, follow these steps:
 3. Run the application locally
 
 # 🚧 **Note:** 
-This project is currently in development and is an MVP (Minimum Viable Product) version of the fragrance website backend REST API. It provides basic functionality to demonstrate core features. Further development is underway to enhance and expand its capabilities.
+This project is an MVP (Minimum Viable Product) version of the fragrance website backend REST API. It provides basic functionality to demonstrate core features. Further development is underway to enhance and expand its capabilities.
 
